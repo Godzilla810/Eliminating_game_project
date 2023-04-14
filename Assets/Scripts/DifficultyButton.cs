@@ -12,6 +12,8 @@ public class DifficultyButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //在場景層次結構中尋找名稱(Game Manager)的遊戲物件，
+        //並取得附加在該遊戲物件上的<GameManager>腳本的組件。
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         button = GetComponent<Button>();
         //AddListener:在特定事件發生時執行某些操作

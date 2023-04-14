@@ -8,7 +8,7 @@ public class Target : MonoBehaviour
     private GameManager gameManager;
     public ParticleSystem explosionParticle;
     public int pointValue;
-    private float minSpeed = 14;
+    private float minSpeed = 15;
     private float maxSpeed = 18;
     private float maxTorque = 10;
     private float xRange = 4;
@@ -37,6 +37,8 @@ public class Target : MonoBehaviour
     Vector3 RandomSpawnPos(){
         return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
     }
+    
+    //按下滑鼠
     //慣用:OnMouseDown / OnMouseUp
     private void OnMouseDown(){
         if (gameManager.isGameActive){
@@ -45,12 +47,12 @@ public class Target : MonoBehaviour
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         }
     }
-    
+    //離開邊界
     private void OnTriggerEnter(Collider other){
         //sensor:isTrigger
         Destroy(gameObject);
         if (!gameObject.CompareTag("Bad")){
-            gameManager.GameOver();
+            gameManager.UpdateLives(-1);
         }
     }
 }
